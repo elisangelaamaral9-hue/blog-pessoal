@@ -24,7 +24,7 @@ imports: [
 
     controllers: [AuthController],
     providers: [Bcrypt, AuthService, LocalStrategy, JwtStrategy],
-    exports: [Bcrypt],
+    exports: [Bcrypt, AuthService],
 })
 
 export class AuthModules {};
