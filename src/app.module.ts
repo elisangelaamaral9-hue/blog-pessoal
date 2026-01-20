@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Controller, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Postagem } from './postagem/entities/postagem_entitys';
 import { PostagemModule } from './postagem/produto.module';
@@ -7,35 +7,27 @@ import { TemaModule } from './tema/tema.modules';
 import { AuthModules } from './auth/auth.modules';
 import { UsuarioModule } from './usuario/usuario.module';
 import { Usuario } from './usuario/entities/usuario.entity';
+import { AppController } from './app.controller';
+import { ConfigModule } from '@nestjs/config/dist/config.module';
+import { ProdService } from './data/services/prod.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(
-      process.env.NODE_ENV === 'test'
-        ? {
-            type: 'sqlite',
-            database: ':memory:',
-            entities: [Postagem, Tema, Usuario],
-            synchronize: true,
-            dropSchema: true,
-            logging: false,
-          }
-        : {
-            type: 'mysql',
-            host: 'localhost',
-            port: 3306,
-            username: 'root',
-            password: 'root',
-            database: 'db_blogpessoal',
-            entities: [Postagem, Tema, Usuario],
-            synchronize: true,
-            logging: true,
-          },
-    ),
+    ConfigModule.forRoot(),
+    TypeOrmModule.forRootAsync({
+	    useClass: ProdService,
+      imports: [ConfigModule],
+
+}),
+
     PostagemModule,
     TemaModule,
     AuthModules,
     UsuarioModule,
+    
   ],
+    controllers: [AppController],
+    providers: [],
+
 })
 export class AppModule {}
