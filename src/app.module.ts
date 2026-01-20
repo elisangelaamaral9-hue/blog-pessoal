@@ -10,6 +10,7 @@ import { Usuario } from './usuario/entities/usuario.entity';
 import { AppController } from './app.controller';
 import { ConfigModule } from '@nestjs/config/dist/config.module';
 import { ProdService } from './data/services/prod.service';
+import { DevService } from './data/services/dev.service';
 
 @Module({
   imports: [
