@@ -22,9 +22,9 @@ async function bootstrap() {
 
   // Configurando o CORS
   app.enableCors({
-    origin: 'https://meusite.com', // Substitua pelo domínio permitido
-    methods: 'GET,POST,PUT,DELETE', // Métodos permitidos
-    allowedHeaders: 'Content-Type, Authorization', // Cabeçalhos permitidos
+    origin: 'http://localhost', // Substitua pelo domínio permitido
+    methods: 'GET,POST,PUT,DELETE,OPTIONS', // Métodos permitidos
+    allowedHeaders: 'Content-Type, Authorization, Accept, Referer, sec-ch-ua, sec-ch-ua-mobile, sec-ch-ua-platform, user-agent', // Cabeçalhos permitidos
     });
 
   await app.listen(process.env.PORT ?? 4000);
