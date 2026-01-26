@@ -22,7 +22,7 @@ async function bootstrap() {
 
   // Configurando o CORS
   app.enableCors({
-    origin: 'http://localhost', // Substitua pelo domínio permitido
+    origin: 'http://localhost:5173/', // Substitua pelo domínio permitido
     methods: 'GET,POST,PUT,DELETE,OPTIONS', // Métodos permitidos
     allowedHeaders: 'Content-Type, Authorization, Accept, Referer, sec-ch-ua, sec-ch-ua-mobile, sec-ch-ua-platform, user-agent', // Cabeçalhos permitidos
     });
